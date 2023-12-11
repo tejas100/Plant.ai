@@ -1,0 +1,366 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant.ai</title>
+    
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <!-- Font awsm -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Custome Css -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <style>
+
+
+.Presult{
+  width: 80%;
+  height: 150px;
+  background: #d4edda;
+  margin-left: 10%;
+  border-radius: 25px;
+}
+
+.Presult h4{
+  font-size: 40px;
+  font-weight: bolder;
+  padding: 5%;
+  
+}
+
+#Presult{
+  display: none;
+}
+#Nresult{
+  display: none;
+}
+
+/* Slider */
+
+#contenedor { 
+  /* background:url(https://josetxu.com/demos/img/bg_before_after.jpg)no-repeat center center; */
+	height: 73.5vw;
+	margin: 1vw auto;
+	max-height: 550px;
+	max-width: 550px;
+	overflow: hidden;
+	width: 98vw;
+}
+#contenedor figure { 
+	background-image: url({{ orig }});
+	background-size: cover;
+	font-size: 0;
+	height: 100%;
+	margin: 0; 
+	position: relative;
+	width: 100%; 
+}
+
+#separador {
+	background-image: url({{ sharp }});
+	background-size: cover;
+	bottom: 0;
+	border-right: 5px solid rgba(255,255,255,0.7);
+	box-shadow: 10px 0 15px -13px #000;
+	height: 100%;
+	max-width: 100%;
+	min-width: 0.6%;
+	overflow: visible;
+	position: absolute;
+	width: 50%; 
+	animation: figure 2s 1 normal ease-in-out 0.1s; 
+	-webkit-animation: figure 2s 1 normal ease-in-out 0.1s; 
+}
+
+/*barra input */
+input#deslizador {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	border: none; 
+	background: transparent;
+	cursor: col-resize;
+	height: 100vw;
+	left: 0;
+	margin: 0;
+	outline: none; 
+	padding: 0;
+	position: relative;
+	top: -100vw;
+	width: 100%;
+}
+/*barra input mozilla*/
+input#deslizador::-moz-range-track { 
+	background: transparent; 
+}
+/*barra input ie*/
+input#deslizador::-ms-track {
+	border: none; 
+	background-color: transparent;
+	height: 100vw; 
+	left: 0; 
+	outline: none; 
+	position: relative;
+	top: -100vw; 
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	cursor: col-resize;
+	color:transparent;
+}
+input#deslizador::-ms-fill-lower {
+	background-color:transparent;
+}
+
+/*boton input chrome*/
+input#deslizador::-webkit-slider-thumb {
+	-webkit-appearance:none;
+	height: 100vw;
+	width: 0.5%;
+	opacity: 0;
+}
+/*boton input mozilla*/
+input#deslizador::-moz-range-thumb {
+	-moz-appearance: none;
+	height: 100vw;
+	width: 0.5%;
+	opacity: 0;
+}   
+/*boton input ie*/
+input#deslizador::-ms-thumb {
+	height: 100vw;
+	width: 0.5%; 
+	opacity:0;
+}
+input#deslizador::-ms-tooltip {
+	display:none;
+}
+
+/*flechas*/
+#separador::before {
+	background: url(https://josetxu.com/html5/beforeafter-responsive/flechas.png) no-repeat scroll 0 center transparent;
+	background-size:contain;
+	content: " ";
+	float: right;
+	height: 100%;
+	margin-right: -34px;
+	position: relative;
+	top:0;
+	width: 64px;
+}
+		
+/*animacion*/
+@keyframes figure {
+  0% {width: 0%; }
+  50% {width: 80%; }
+  100% {width: 50%; }
+}
+/*animacion chrome*/
+@-webkit-keyframes figure {
+  0% {width: 0%; }
+  50% {width: 80%; }
+  100% {width: 50%; }
+}
+
+#stick_btn{
+  width: 80%;
+  height: 20vh;
+  border-radius: 5px;
+  margin-top: 150px;
+  font-size: 26px !important;
+  text-transform: capitalize; 
+  background: green; 
+  color: white;
+}
+
+.sec_title{
+  font-size: 28px;
+  background: red;
+  height: 20px;
+  width : 100px !important;
+  margin-left: 5px;
+  line-height: 50px;
+  border-radius: 3px;
+  color: white;
+  border: none !important;
+
+}
+</style>
+
+
+</head>
+<body>
+
+<div class="navigation">
+  <ul>
+    <li class="space"><a href="/">
+      <span class="icon1"></span>
+      <span class="title"><img src="{% static 'img/logo1.png' %}" alt="Retinopathy" width="150" height="37"></span></a>
+    </li>
+    <li class="space"><a href="">
+      <span class="icon"></span>
+      <span class="title"></span></a>
+    </li>
+    <li><a href="/">
+      <span class="icon"><i class="fa fa-pie-chart" aria-hidden="true"></i></span>
+      <span class="title">Dashboard</span></a>
+    </li>
+    <li  class="active"><a href="#">
+      <span class="icon"><i class="fa fa-file-image-o" aria-hidden="true"></i></span>
+      <span class="title">Plant Diseas</span></a>
+    </li>
+  </ul>
+</div>
+
+<div class="container1">
+
+  <ul>
+    <li class="space">
+      <span class="icon"></span>
+      <span class="title"> <b>Plant.ai </b>Results</span> <br>
+      <span class="pack">*Timeline of processed image</span>
+    </li>
+    </ul>
+
+
+    <p></p>
+
+    <div class="line"></div>
+    <!-- Upload  -->
+
+      <div class="row">
+
+        <div class="col-lg-6 col-md-12 mb-6" id ="ori">
+          <div class="row">
+              <center>
+                
+                <!-- <img src="{{ orig }}" alt="" width="550" height="380"> -->
+                <div id="contenedor">
+                  <figure>
+                    <div id="separador"></div>
+                  </figure>
+                <input oninput="beforeAfter()" onchange="beforeAfter()" type="range" min="0" max="100" value="50" id="deslizador" />
+                </div>
+              </center>
+          </div>
+          <div class="row">
+              <center class="title"> <b>Uploaded Image</b></center>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12 mb-6" id ="gray">
+            <button class="btn btn-primary" id = "stick_btn"><b>{{result}}</b></button>
+        </div>
+        </div>
+
+        <br>
+
+      <div class="row">
+      <div class="col-lg-12 col-md-12 mb-12" >
+
+        <span class="sec_title"><b> &nbsp; Pre-processed</b> Images &nbsp;</span>
+
+      </div>
+      </div>
+
+       <div class="row">
+
+          <div class="col-lg-4 col-md-12 mb-4" id ="unsh">
+            <div class="row">
+                <center><img src="{{ orig }}" alt="" width="400" height="400" style="border: solid 10px white;"></center>
+            </div>
+            <div class="row">
+                <center class="title">Original Image</center>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12 mb-4" id ="cont">
+            <div class="row">
+                <center><img src="{{ denoice }}" alt="" width="400" height="400" style="border: solid 10px white;"></center>
+            </div>
+            <div class="row">
+                <center class="title">Denoice Image</center>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12 mb-4" id ="cont">
+            <div class="row">
+                <center><img src="{{ sharp }}" alt="" width="400" height="400" style="border: solid 10px white;"></center>
+            </div>
+            <div class="row">
+                <center class="title">Sharp Image</center>
+            </div>
+          </div>
+         </div>
+
+        
+         <br>
+         
+</div>
+
+
+
+  <!-- End of upload -->
+
+  
+</div>  
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+
+
+
+      // Slider
+      function beforeAfter() {
+        document.getElementById('separador').style.width = document.getElementById('deslizador').value + "%";
+        }
+
+      Pres = document.getElementById("Presult");
+      Nres = document.getElementById("Nresult");
+
+      sticker = document.getElementById("stick_btn");
+
+      function set_sticker(BGCOLOR,COLOR,LEVEL,STATUS){
+        if(STATUS == 0){
+          sticker.style.background = BGCOLOR;
+          sticker.style.color = COLOR;
+          sticker.innerHTML = "This person is <b>Healthy</b>";
+        }else{
+          sticker.style.background = BGCOLOR;
+          sticker.style.color = COLOR;
+          sticker.innerHTML = "This person has <b>Retinopathy</b> with <br>Severity level: <b>"+LEVEL+"</b>";
+        }
+        
+      }
+      // switch("{{ result }}"){
+      //   case "0" : set_sticker('Green','white','Helthy',0); break;
+      //   case "1" : set_sticker('Yellow','black','Mild',1); break;
+      //   case "2" : set_sticker('Orange','black', 'Moderate',1); break;
+      //   case "3" : set_sticker('Red','white','Severe',1); break;
+      //   case "4" : set_sticker('Red','white','Proliferative DR',1); break;
+      // }
+
+      // if("{{ result }}"){
+      //   Pres.style.display = "block";
+      // }else{
+      //   Nres.style.display = "block";
+      // }
+    </script>
+
+
+    
+</body>
+
+</html>
